@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{
+    ViewData["Title"] = "MVC";
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
@@ -46,9 +49,8 @@
     <meta name="theme-color" content="#ffffff">
 
     <!-- Título dinámico -->
-    <title>Users</title>
-
-
+    <title>@ViewData["Title"]</title>
+    
     <!-- CSS y librerías -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
