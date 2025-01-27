@@ -2,18 +2,65 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>@ViewData["Title"] - CRUD_MVC_users</title>
+
+    <!-- Metadata principal -->
+    <meta name="description"
+          content="Aplicación CRUD desarrollada con .NET MVC y Razor Pages. Gestiona usuarios con operaciones de crear, leer, actualizar y eliminar. Ideal para aprender conceptos básicos de MVC y Razor.">
+    <meta name="keywords"
+          content="CRUD .NET, MVC, Razor Pages, Bootstrap, Desarrollo Web, Backend, Proyecto Educativo, Operaciones CRUD">
+    <meta name="author" content="Javier Cómbita Téllez">
+    <meta name="sitedomain" content="https://jcomte23.com">
+    <meta name="organization" content="jcomte23">
+    <meta name="designer" content="Javier Cómbita Téllez">
+    <meta name="copyright" content="©2025 jcomte23. Todos los derechos reservados">
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="7 days">
+
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="CRUD MVC .NET">
+    <meta property="og:url" content="http://localhost:5012/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="CRUD MVC con .NET y Razor Pages">
+    <meta property="og:description"
+          content="Aplicación CRUD desarrollada con .NET MVC y Razor Pages. Aprende a manejar operaciones de usuarios usando un enfoque educativo y práctico.">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:image" content="http://localhost:5012/images/crud-mvc.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CRUD MVC con .NET y Razor Pages">
+    <meta name="twitter:description"
+          content="Aplicación CRUD desarrollada con .NET MVC y Razor Pages. Aprende a manejar operaciones de usuarios usando un enfoque educativo y práctico.">
+    <meta name="twitter:image" content="http://localhost:5012//images/crud-mvc.webp">
+    <meta name="twitter:creator" content="jcomte23">
+    <meta name="twitter:site" content="jcomte23"> 
+    <meta name="twitter:url" content="http://localhost:5012/">
+
+    <!-- Favicon -->
+    <link rel="icon" href="~/favicon.svg" type="image/svg+xml">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Título dinámico -->
+    <title>Users</title>
+
+
+    <!-- CSS y librerías -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
-    <link rel="stylesheet" href="~/CRUD_MVC_users.styles.css" asp-append-version="true"/>
+    @* <link rel="stylesheet" href="~/CRUD_MVC_users.styles.css" asp-append-version="true"/> *@
 </head>
 <body>
 <header>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
         <div class="container-fluid">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CRUD_MVC_users</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+            <a class="navbar-brand text-capitalize" asp-area="" asp-controller="Home" asp-action="Index">users</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                    aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
