@@ -14,7 +14,7 @@
     <meta name="sitedomain" content="https://jcomte23.com">
     <meta name="organization" content="jcomte23">
     <meta name="designer" content="Javier Cómbita Téllez">
-    <meta name="copyright" content="©2025 jcomte23. Todos los derechos reservados">
+    <meta name="copyright" content="©2025 Javier Cómbita Téllez. Todos los derechos reservados">
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="7 days">
@@ -38,7 +38,7 @@
           content="Aplicación CRUD desarrollada con .NET MVC y Razor Pages. Aprende a manejar operaciones de usuarios usando un enfoque educativo y práctico.">
     <meta name="twitter:image" content="http://localhost:5012//images/crud-mvc.webp">
     <meta name="twitter:creator" content="jcomte23">
-    <meta name="twitter:site" content="jcomte23"> 
+    <meta name="twitter:site" content="jcomte23">
     <meta name="twitter:url" content="http://localhost:5012/">
 
     <!-- Favicon -->
@@ -59,7 +59,7 @@
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
         <div class="container-fluid">
             <a class="navbar-brand text-capitalize" asp-area="" asp-controller="Home" asp-action="Index">
-                <img src="~/images/Net.jpg" alt="Logo" style="height: 60px;" />
+                <img src="~/images/Net.jpg" alt="Logo" style="height: 60px;"/>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
                     aria-controls="navbarSupportedContent"
@@ -77,17 +77,24 @@
     </nav>
 </header>
 
-<div class="container">
-    <main role="main" class="pb-3">
-        @RenderBody()
-    </main>
-</div>
 
-<footer class="border-top footer text-muted">
-    <div class="container">
-        &copy; 2025 - CRUD_MVC_users - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+<main role="main" class="pb-3">
+    @RenderBody()
+</main>
+
+
+<footer class="py-4">
+    <div class="container text-center">
+        <p>© 2025 Javier Cómbita Téllez. All rights reserved.</p>
+        <p>
+            Connect with me on:
+            <a href="https://www.linkedin.com/in/javier-c%C3%B3mbita-t%C3%A9llez-4b4aa3258/" target="_blank"
+               class="text-decoration-none">LinkedIn</a> |
+            <a href="https://github.com/jcomte23" target="_blank" class="text-decoration-none">GitHub</a>
+        </p>
     </div>
 </footer>
+
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
