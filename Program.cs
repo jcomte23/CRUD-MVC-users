@@ -1,3 +1,20 @@
+
+
+using DotNetEnv;
+
+// Cargar variables del archivo .env
+Env.Load();
+
+// Obtener credenciales desde las variables de entorno
+var dbHost = Environment.GetEnvironmentVariable("DB_HOST");
+var dbName = Environment.GetEnvironmentVariable("DB_NAME");
+var dbUser = Environment.GetEnvironmentVariable("DB_USER");
+var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
+var dbPort = Environment.GetEnvironmentVariable("DB_PORT") ?? "3306";
+
+// Construir la cadena de conexión dinámicamente
+var connectionString = $"server={dbHost};port={dbPort};database={dbName};user={dbUser};password={dbPassword};";
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
