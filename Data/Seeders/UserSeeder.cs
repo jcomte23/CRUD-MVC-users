@@ -8,16 +8,30 @@ public static class UserSeeder
 {
     public static List<User> GenerateFakeUsers(int numberOfUsers = 50)
     {
-        var faker = new Faker<User>()
-            .RuleFor(u => u.Id, f => Guid.NewGuid()) 
-            .RuleFor(u => u.Name, f => f.Name.FirstName())
-            .RuleFor(u => u.Lastname, f => f.Name.LastName())
-            .RuleFor(u => u.Email, (f, u) => f.Internet.Email(u.Name, u.Lastname))
-            .RuleFor(u => u.DateOfBirth, f => DateOnly.FromDateTime(f.Date.Between(DateTime.Now.AddYears(-30), DateTime.Now.AddYears(-18)))) 
-            .RuleFor(u => u.Gender, f => f.PickRandom<Gender>()) 
-            .RuleFor(u => u.CreatedAt, f => f.Date.Past(1))
-            .RuleFor(u => u.UpdatedAt, f => f.Date.Recent());
+        var faker = new Faker(); // Usamos Faker general en lugar de crear un User específico
 
-        return faker.Generate(numberOfUsers); // Genera 50 usuarios por defecto
+        var users = new List<User>();
+
+        for (var i = 0; i < numberOfUsers; i++)
+        {
+            var name = faker.Name.FirstName();
+            var lastname = faker.Name.LastName();
+            var email = faker.Internet.Email(name, lastname);
+            var dateOfBirth = DateOnly.FromDateTime(faker.Date.Between(DateTime.Now.AddYears(-30), DateTime.Now.AddYears(-18)));
+            var gender = faker.PickRandom<Gender>();
+            var createdAt = faker.Date.Past(1);
+            var updatedAt = faker.Date.Recent();
+
+            var user = new User(name, lastname, email, dateOfBirth, gender)
+            {
+                // Creamos el usuario con el constructor y asignamos valores para CreatedAt y UpdatedAt
+                CreatedAt = createdAt,
+                UpdatedAt = updatedAt
+            };
+
+            users.Add(user);
+        }
+
+        return users;
     }
 }
