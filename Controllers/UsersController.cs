@@ -47,6 +47,9 @@ public class UsersController(ApplicationDbContext context) : Controller
         context.Add(newUser);
         await context.SaveChangesAsync();
         
+        // Agregar mensaje de éxito a TempData
+        TempData["SuccessMessage"] = "El usuario se ha creado exitosamente.";
+        
         return RedirectToAction(nameof(Index));
     }
 
