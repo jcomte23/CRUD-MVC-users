@@ -1,4 +1,5 @@
 using CRUD_MVC_users.Data;
+using CRUD_MVC_users.Data.Seeders;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,8 +16,11 @@ public class UsersController : Controller
     
     public async Task<IActionResult> Index()
     {
-        var users = await _context.Users.ToListAsync();
+        // var users = await _context.Users.ToListAsync();
+        //
+        // return View(users);
         
-        return View(users);
+        var fakeUsers = UserSeeder.GenerateFakeUsers(1000);
+        return View(fakeUsers);
     }
 }
