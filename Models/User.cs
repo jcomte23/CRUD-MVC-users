@@ -7,54 +7,45 @@ namespace CRUD_MVC_users.Models;
 
 [Table("users")] 
 [Index(nameof(Email), IsUnique = true)] 
-public class User
+public class User(string name, string lastname, string email, DateOnly dateBirth, Gender gender)
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Column("id")]
-    public Guid Id { get; set; }
+    public Guid Id { get; init; }
 
     [Required]
     [StringLength(100)]
     [Column("name")]
-    public string Name { get; set; }
+    public string Name { get; init; } = name.Trim().ToLower();
 
     [Required]
     [StringLength(100)]
     [Column("last_name")]
-    public string Lastname { get; set; }
+    public string Lastname { get; init; } = lastname.Trim().ToLower();
 
     [Required]
     [EmailAddress]
     [StringLength(255)]
     [Column("email")]
-    public string Email { get; set; }
+    public string Email { get; init; } = email.Trim().ToLower();
 
     [Required]
     [Column("date_birth")]
     [DataType(DataType.Date)]  
     [Display(Name = "Date of Birth")]  
     [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]  
-    public DateOnly DateBirth { get; set; }
-    
+    public DateOnly DateBirth { get; init; } = dateBirth;
+
     [Required]
     [Column("gender")]
     [EnumDataType(typeof(Gender))] 
-    public Gender Gender { get; set; } 
-    
+    public Gender Gender { get; init; } = gender;
+
     [Column("created_at")]
     [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-    public DateTime CreatedAt { get; set; }
+    public DateTime CreatedAt { get; init; }
 
     [Column("updated_at")]
-    public DateTime UpdatedAt { get; set; }
-
-    public User(string name, string lastname, string email, DateOnly dateBirth , Gender gender )
-    {
-        Name = name.Trim().ToLower();
-        Lastname = lastname.Trim().ToLower();
-        Email = email.Trim().ToLower();
-        DateBirth = dateBirth;
-        Gender = gender;
-    }
+    public DateTime UpdatedAt { get; init; }
 }
