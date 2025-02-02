@@ -16,11 +16,27 @@ public class UsersController : Controller
     
     public async Task<IActionResult> Index()
     {
-        // var users = await _context.Users.ToListAsync();
-        //
-        // return View(users);
+        var users = await _context.Users.ToListAsync();
+        return View(users);
+    }
+    
+    public async Task<IActionResult> SeedUsers()
+    {
+        var fakeUsers = UserSeeder.GenerateFakeUsers(100);
         
-        var fakeUsers = UserSeeder.GenerateFakeUsers(1000);
-        return View(fakeUsers);
+        await _context.Users.AddRangeAsync(fakeUsers);
+        await _context.SaveChangesAsync();
+        
+        return RedirectToAction(nameof(Index));
+    }
+    
+    public async Task<IActionResult> ClearUsers()
+    {
+        var users = _context.Users.ToList();
+        
+        _context.Users.RemoveRange(users);
+        await _context.SaveChangesAsync();
+        
+        return RedirectToAction(nameof(Index));
     }
 }
