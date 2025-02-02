@@ -24,6 +24,15 @@ public class UsersController(ApplicationDbContext context) : Controller
     public async Task<IActionResult> Create(UserDto request)
     {
         if (!ModelState.IsValid) return View(request);
+        
+        var existingUser = await context.Users
+            .FirstOrDefaultAsync(u => u.Email == request.Email);
+
+        if (existingUser != null)
+        {
+            ModelState.AddModelError("Email", "El correo electrónico ya está registrado.");
+            return View(request);
+        }
 
         var newUser = new User(request.Name, request.Lastname, request.Email, request.DateBirth, request.Gender);
         context.Add(newUser);
