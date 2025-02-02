@@ -34,12 +34,13 @@ public class User
     [DataType(DataType.Date)]  
     [Display(Name = "Date of Birth")]  
     [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]  
-    public DateTime DateBirth { get; set; }
+    public DateOnly DateBirth { get; set; }
+
 
     [Required]
     [Column("gender")]
     [EnumDataType(typeof(Gender))] 
-    public string Gender { get; set; } 
+    public Gender Gender { get; set; } 
     
     [Column("created_at")]
     [DatabaseGenerated(DatabaseGeneratedOption.Computed)]

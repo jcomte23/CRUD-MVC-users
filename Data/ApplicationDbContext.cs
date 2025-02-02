@@ -23,6 +23,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         // Configuración para mapear el enum Gender a un string en la base de datos
         modelBuilder.Entity<User>()
             .Property(u => u.Gender)
-            .HasConversion<string>();
+            .HasConversion<string>()
+            .HasColumnType("VARCHAR(50)");
     }
 }
