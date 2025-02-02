@@ -127,8 +127,29 @@ public class UsersController(ApplicationDbContext context) : Controller
 
         return RedirectToAction(nameof(Index));
     }
+    
+    [HttpPost]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        // Buscamos al usuario por su ID
+        var user = await context.Users.FindAsync(id);
 
+        // Si el usuario no existe, retornamos un 404
+        if (user == null)
+        {
+            return NotFound();
+        }
 
+        // Eliminamos al usuario de la base de datos
+        context.Users.Remove(user);
+        await context.SaveChangesAsync();
+
+        // Agregar mensaje de éxito a TempData
+        TempData["SuccessMessage"] = "El usuario se ha eliminado exitosamente.";
+
+        return RedirectToAction(nameof(Index));
+    }
+    
     public async Task<IActionResult> SeedUsers()
     {
         var fakeUsers = UserSeeder.GenerateFakeUsers(100);
