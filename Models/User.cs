@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CRUD_MVC_users.Models;
 
-
 [Table("users")] 
 [Index(nameof(Email), IsUnique = true)] 
 public class User

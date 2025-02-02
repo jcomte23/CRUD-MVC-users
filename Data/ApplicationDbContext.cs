@@ -12,10 +12,12 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     {
         modelBuilder.Entity<User>()
             .Property(u => u.CreatedAt)
+            .HasColumnType("TIMESTAMP")
             .HasDefaultValueSql("CURRENT_TIMESTAMP"); // Valor por defecto en MySQL
 
         modelBuilder.Entity<User>()
             .Property(u => u.UpdatedAt)
+            .HasColumnType("TIMESTAMP")
             .HasDefaultValueSql("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"); // Se actualiza en cada UPDATE
         
         // Configuración para mapear el enum Gender a un string en la base de datos
