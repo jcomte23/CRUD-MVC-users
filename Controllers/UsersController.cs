@@ -13,6 +13,12 @@ public class UsersController(ApplicationDbContext context) : Controller
         return View(users);
     }
     
+    public IActionResult Create()
+    {
+        return View();
+    }
+
+    
     public async Task<IActionResult> SeedUsers()
     {
         var fakeUsers = UserSeeder.GenerateFakeUsers(100);
