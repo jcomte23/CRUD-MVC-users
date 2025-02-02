@@ -1,9 +1,15 @@
 using CRUD_MVC_users.Config;
+using CRUD_MVC_users.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 EnvConfig.Load();
+
+// Configure the database connection
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseMySql(EnvConfig.GetConnectionString(), new MySqlServerVersion(new Version(8, 0, 30))));
 
 builder.Services.AddControllersWithViews();
 
