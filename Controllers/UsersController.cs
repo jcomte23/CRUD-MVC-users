@@ -5,18 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CRUD_MVC_users.Controllers;
 
-public class UsersController : Controller
+public class UsersController(ApplicationDbContext context) : Controller
 {
-    private readonly ApplicationDbContext _context;
-
-    public UsersController(ApplicationDbContext context)
-    {
-        _context = context;
-    }
-    
     public async Task<IActionResult> Index()
     {
-        var users = await _context.Users.ToListAsync();
+        var users = await context.Users.ToListAsync();
         return View(users);
     }
     
@@ -24,18 +17,18 @@ public class UsersController : Controller
     {
         var fakeUsers = UserSeeder.GenerateFakeUsers(100);
         
-        await _context.Users.AddRangeAsync(fakeUsers);
-        await _context.SaveChangesAsync();
+        await context.Users.AddRangeAsync(fakeUsers);
+        await context.SaveChangesAsync();
         
         return RedirectToAction(nameof(Index));
     }
     
     public async Task<IActionResult> ClearUsers()
     {
-        var users = _context.Users.ToList();
+        var users = context.Users.ToList();
         
-        _context.Users.RemoveRange(users);
-        await _context.SaveChangesAsync();
+        context.Users.RemoveRange(users);
+        await context.SaveChangesAsync();
         
         return RedirectToAction(nameof(Index));
     }
