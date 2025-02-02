@@ -25,9 +25,9 @@
             </div>
 
             <div class="mb-3">
-                <label asp-for="DateBirth" class="form-label">Fecha de Nacimiento</label>
-                <input asp-for="DateBirth" class="form-control" type="date" required>
-                <span asp-validation-for="DateBirth" class="text-danger"></span>
+                <label asp-for="DateOfBirth" class="form-label">Fecha de Nacimiento</label>
+                <input asp-for="DateOfBirth" class="form-control" type="date" required max="@DateTime.Now.ToString("yyyy-MM-dd")">
+                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
             </div>
 
             <div class="mb-3">

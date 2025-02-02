@@ -19,7 +19,7 @@ public class UserDto
 
     [Required(ErrorMessage = "The date of birth is required.")]
     [DataType(DataType.Date)]
-    public DateOnly DateBirth { get; init; }
+    public DateOnly DateOfBirth { get; init; }
 
     [Required(ErrorMessage = "The gender is required.")]
     [EnumDataType(typeof(Gender))] 

@@ -7,7 +7,7 @@ namespace CRUD_MVC_users.Models;
 
 [Table("users")] 
 [Index(nameof(Email), IsUnique = true)] 
-public class User(string name, string lastname, string email, DateOnly dateBirth, Gender gender)
+public class User(string name, string lastname, string email, DateOnly dateOfBirth, Gender gender)
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -35,7 +35,7 @@ public class User(string name, string lastname, string email, DateOnly dateBirth
     [DataType(DataType.Date)]  
     [Display(Name = "Date of Birth")]  
     [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]  
-    public DateOnly DateBirth { get; init; } = dateBirth;
+    public DateOnly DateOfBirth { get; init; } = dateOfBirth;
 
     [Required]
     [Column("gender")]

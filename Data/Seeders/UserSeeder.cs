@@ -13,7 +13,7 @@ public static class UserSeeder
             .RuleFor(u => u.Name, f => f.Name.FirstName())
             .RuleFor(u => u.Lastname, f => f.Name.LastName())
             .RuleFor(u => u.Email, (f, u) => f.Internet.Email(u.Name, u.Lastname))
-            .RuleFor(u => u.DateBirth, f => DateOnly.FromDateTime(f.Date.Between(DateTime.Now.AddYears(-30), DateTime.Now.AddYears(-18)))) 
+            .RuleFor(u => u.DateOfBirth, f => DateOnly.FromDateTime(f.Date.Between(DateTime.Now.AddYears(-30), DateTime.Now.AddYears(-18)))) 
             .RuleFor(u => u.Gender, f => f.PickRandom<Gender>()) 
             .RuleFor(u => u.CreatedAt, f => f.Date.Past(1))
             .RuleFor(u => u.UpdatedAt, f => f.Date.Recent());

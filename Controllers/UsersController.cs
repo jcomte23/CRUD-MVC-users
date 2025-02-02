@@ -23,8 +23,17 @@ public class UsersController(ApplicationDbContext context) : Controller
     [HttpPost]
     public async Task<IActionResult> Create(UserDto request)
     {
+        // verificación de modelo
         if (!ModelState.IsValid) return View(request);
         
+        // Verificar si la fecha de nacimiento es mayor a la fecha actual
+        if (request.DateOfBirth > DateOnly.FromDateTime(DateTime.Now))
+        {
+            ModelState.AddModelError("DateOfBirth", "La fecha de nacimiento no puede ser en el futuro.");
+            return View(request);
+        }
+        
+        // Verificar si el correo electrónico ya está registrado en la base de datos
         var existingUser = await context.Users
             .FirstOrDefaultAsync(u => u.Email == request.Email);
 
@@ -34,7 +43,7 @@ public class UsersController(ApplicationDbContext context) : Controller
             return View(request);
         }
 
-        var newUser = new User(request.Name, request.Lastname, request.Email, request.DateBirth, request.Gender);
+        var newUser = new User(request.Name, request.Lastname, request.Email, request.DateOfBirth, request.Gender);
         context.Add(newUser);
         await context.SaveChangesAsync();
         
