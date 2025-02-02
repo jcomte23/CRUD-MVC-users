@@ -1,5 +1,7 @@
 using CRUD_MVC_users.Data;
 using CRUD_MVC_users.Data.Seeders;
+using CRUD_MVC_users.DTOs;
+using CRUD_MVC_users.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,6 +18,18 @@ public class UsersController(ApplicationDbContext context) : Controller
     public IActionResult Create()
     {
         return View();
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> Create(UserDto request)
+    {
+        if (!ModelState.IsValid) return View(request);
+
+        var newUser = new User(request.Name, request.Lastname, request.Email, request.DateBirth, request.Gender);
+        context.Add(newUser);
+        await context.SaveChangesAsync();
+        
+        return RedirectToAction(nameof(Index));
     }
 
     

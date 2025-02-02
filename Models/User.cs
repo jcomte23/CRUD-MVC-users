@@ -26,6 +26,7 @@ public class User
 
     [Required]
     [EmailAddress]
+    [StringLength(255)]
     [Column("email")]
     public string Email { get; set; }
 
@@ -35,8 +36,7 @@ public class User
     [Display(Name = "Date of Birth")]  
     [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]  
     public DateOnly DateBirth { get; set; }
-
-
+    
     [Required]
     [Column("gender")]
     [EnumDataType(typeof(Gender))] 
@@ -48,4 +48,13 @@ public class User
 
     [Column("updated_at")]
     public DateTime UpdatedAt { get; set; }
+
+    public User(string name, string lastname, string email, DateOnly dateBirth , Gender gender )
+    {
+        Name = name.Trim().ToLower();
+        Lastname = lastname.Trim().ToLower();
+        Email = email.Trim().ToLower();
+        DateBirth = dateBirth;
+        Gender = gender;
+    }
 }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using CRUD_MVC_users.Models.Enums;
 
 namespace CRUD_MVC_users.DTOs;
 
@@ -18,10 +19,8 @@ public class UserDto
 
     [Required(ErrorMessage = "The date of birth is required.")]
     [DataType(DataType.Date)]
-    [Range(typeof(DateOnly), "1900-01-01", "2024-12-31", ErrorMessage = "The date of birth must be between 1900 and 2024.")]
     public DateOnly DateBirth { get; set; }
 
     [Required(ErrorMessage = "The gender is required.")]
-    [RegularExpression("^(M|F)$", ErrorMessage = "The gender must be 'M' (Male) or 'F' (Female).")]
-    public string Gender { get; set; }
+    public Gender Gender { get; set; }
 }
