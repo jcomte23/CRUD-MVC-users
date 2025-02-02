@@ -5,6 +5,9 @@ namespace CRUD_MVC_users.DTOs;
 
 public class UserDto
 {
+    [ScaffoldColumn(false)]  
+    public Guid Id { get; init; }
+    
     [Required(ErrorMessage = "The name is required.")]
     [StringLength(50, MinimumLength = 2, ErrorMessage = "The name must be between 2 and 50 characters.")]
     public required string Name { get; init; }

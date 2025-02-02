@@ -17,30 +17,30 @@ public class User(string name, string lastname, string email, DateOnly dateOfBir
     [Required]
     [StringLength(100)]
     [Column("name")]
-    public string Name { get; init; } = name.Trim().ToLower();
+    public string Name { get; set; } = name.Trim().ToLower();
 
     [Required]
     [StringLength(100)]
     [Column("last_name")]
-    public string Lastname { get; init; } = lastname.Trim().ToLower();
+    public string Lastname { get; set; } = lastname.Trim().ToLower();
 
     [Required]
     [EmailAddress]
     [StringLength(255)]
     [Column("email")]
-    public string Email { get; init; } = email.Trim().ToLower();
+    public string Email { get; set; } = email.Trim().ToLower();
 
     [Required]
     [Column("date_birth")]
     [DataType(DataType.Date)]  
     [Display(Name = "Date of Birth")]  
     [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]  
-    public DateOnly DateOfBirth { get; init; } = dateOfBirth;
+    public DateOnly DateOfBirth { get; set; } = dateOfBirth;
 
     [Required]
     [Column("gender")]
     [EnumDataType(typeof(Gender))] 
-    public Gender Gender { get; init; } = gender;
+    public Gender Gender { get; set; } = gender;
 
     [Column("created_at")]
     [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
