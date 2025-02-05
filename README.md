@@ -20,17 +20,22 @@ Asegúrate de tener instalado lo siguiente en tu entorno de desarrollo:
    git clone https://github.com/jcomte23/CRUD-MVC-users.git
    cd CRUD-MVC-users
    ```
-2. **Configurar la conexión a MySQL**
+2. **Instalar dependencias**
+   Ejecuta el siguiente comando para instalar todos los paquetes necesarios, incluyendo Entity Framework Core:
+   ```sh
+   dotnet restore
+   ```
+3. **Configurar la conexión a MySQL**
    Copia el archivo `.envexample` y renómbralo a `.env`, luego edítalo con los datos de tu base de datos:
    ```sh
    cp .envexample .env
    ```
    Rellena las variables necesarias en el archivo `.env` con la configuración de la base de datos.
-3. **Aplicar las migraciones (si se usa Entity Framework Core)**
+4. **Aplicar las migraciones (si se usa Entity Framework Core)**
    ```sh
    dotnet ef database update
    ```
-4. **Ejecutar el proyecto**
+5. **Ejecutar el proyecto**
    ```sh
    dotnet run
    ```
