@@ -1,0 +1,5 @@
+﻿DB_HOST=your host
+DB_NAME=your database name
+DB_USER=your database
+DB_PASSWORD=your password
+DB_PORT=3306
