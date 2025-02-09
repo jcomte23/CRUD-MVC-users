@@ -11,8 +11,22 @@ public class UsersController(ApplicationDbContext context) : Controller
 {
     public async Task<IActionResult> Index()
     {
-        var users = await context.Users.ToListAsync();
-        return View(users);
+        try
+        {
+            var users = await context.Users.ToListAsync();
+            return View(users);
+        }
+        catch (Exception ex)
+        {
+            // Registra el error
+            Console.WriteLine($"Error en Index: {ex.Message}");
+
+            // Mensaje de error con TempData
+            TempData["ErrorMessage"] = "Ocurrió un error al obtener los usuarios. Por favor, inténtalo de nuevo.";
+
+            // Redirige a la misma vista o a otra
+            return RedirectToAction("Index");
+        }
     }
 
     public IActionResult Create()
