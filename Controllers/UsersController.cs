@@ -37,35 +37,50 @@ public class UsersController(ApplicationDbContext context) : Controller
     [HttpPost]
     public async Task<IActionResult> Create(UserDto request)
     {
-        // verificación de modelo
-        if (!ModelState.IsValid) return View(request);
-
-        // Verificar si la fecha de nacimiento es mayor a la fecha actual
-        if (request.DateOfBirth > DateOnly.FromDateTime(DateTime.Now))
+        try
         {
-            ModelState.AddModelError("DateOfBirth", "La fecha de nacimiento no puede ser en el futuro.");
-            return View(request);
+            // Verificación de modelo
+            if (!ModelState.IsValid) return View(request);
+
+            // Verificar si la fecha de nacimiento es mayor a la fecha actual
+            if (request.DateOfBirth > DateOnly.FromDateTime(DateTime.Now))
+            {
+                ModelState.AddModelError("DateOfBirth", "La fecha de nacimiento no puede ser en el futuro.");
+                return View(request);
+            }
+
+            // Verificar si el correo electrónico ya está registrado en la base de datos
+            var existingUser = await context.Users
+                .FirstOrDefaultAsync(u => u.Email == request.Email);
+
+            if (existingUser != null)
+            {
+                ModelState.AddModelError("Email", "El correo electrónico ya está registrado.");
+                return View(request);
+            }
+
+            // Crear el nuevo usuario
+            var newUser = new User(request.Name, request.Lastname, request.Email, request.DateOfBirth, request.Gender);
+            context.Add(newUser);
+            await context.SaveChangesAsync();
+
+            // Agregar mensaje de éxito a TempData
+            TempData["SuccessMessage"] = "El usuario se ha creado exitosamente.";
+
+            return RedirectToAction(nameof(Index));
         }
-
-        // Verificar si el correo electrónico ya está registrado en la base de datos
-        var existingUser = await context.Users
-            .FirstOrDefaultAsync(u => u.Email == request.Email);
-
-        if (existingUser != null)
+        catch (Exception ex)
         {
-            ModelState.AddModelError("Email", "El correo electrónico ya está registrado.");
-            return View(request);
+            // Log del error (se recomienda usar ILogger en lugar de Console.WriteLine)
+            Console.WriteLine($"Error en Create: {ex.Message}");
+
+            // Almacenar mensaje de error en TempData
+            TempData["ErrorMessage"] = "Ocurrió un error al crear el usuario. Por favor, inténtalo de nuevo.";
+
+            return RedirectToAction(nameof(Index));
         }
-
-        var newUser = new User(request.Name, request.Lastname, request.Email, request.DateOfBirth, request.Gender);
-        context.Add(newUser);
-        await context.SaveChangesAsync();
-
-        // Agregar mensaje de éxito a TempData
-        TempData["SuccessMessage"] = "El usuario se ha creado exitosamente.";
-
-        return RedirectToAction(nameof(Index));
     }
+
 
     [HttpGet]
     public async Task<IActionResult> Edit(Guid id)

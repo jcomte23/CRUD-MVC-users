@@ -1,6 +1,8 @@
 ﻿@model IEnumerable<User>
+
 @{
     var successMessage = TempData["SuccessMessage"] as string;
+    var errorMessage = TempData["ErrorMessage"] as string;
 }
 
 <div class="container mt-4 table-responsive ">
@@ -19,6 +21,19 @@
                 
                 if (successMessage) {
                     toastr.success(successMessage);
+                }
+            });
+        </script>
+    }
+
+    @if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <script>
+            $(document).ready(function () {
+                var errorMessage = '@errorMessage';
+
+                if (errorMessage) {
+                    toastr.error(errorMessage);
                 }
             });
         </script>
